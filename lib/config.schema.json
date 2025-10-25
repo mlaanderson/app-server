@@ -1,0 +1,66 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://example.com/product.schema.json",
+    "type": "object",
+    "properties": {
+        "port": {
+            "description": "The HTTP port to listen to",
+            "type": "number",
+            "default": 80,
+            "minimum": 0,
+            "maximum": 65535
+        },
+        "app_directory": {
+            "description": "The path to scan for applications",
+            "type": "string"
+        },
+        "standalone": {
+            "description": "A folder to run an app in standalone mode from",
+            "type": "object",
+            "properties": {
+                "local_path": {
+                    "description": "The local path to the app",
+                    "type": "string"
+                },
+                "web_path": {
+                    "description": "The mount point for the app",
+                    "type": "string",
+                    "default": "/"
+                }
+            },
+            "required": ["local_path", "web_path"]
+        },
+        "ssl": {
+            "description": "Optional configuration for HTTPS",
+            "type": "object",
+            "properties": {
+                "port": {
+                    "description": "The HTTPS port to listen to",
+                    "type": "number",
+                    "default": 443,
+                    "minimum": 0,
+                    "maximum": 65535
+                },
+                "redirect": {
+                    "description": "Forces all HTTP traffic to be redirected to HTTPS",
+                    "type": "boolean",
+                    "default": false
+                },
+                "keyFile": {
+                    "description": "The path to the SSL key file",
+                    "type": "string"
+                },
+                "certFile": {
+                    "description": "The path the the SSL certificate file",
+                    "type": "string"
+                }
+            },
+            "required": ["port", "keyFile", "certFile"]
+        }
+    },
+    "required": ["port"],
+    "oneOf": [
+        { "required": ["app_directory"] },
+        { "required": ["standalone"] }
+    ]
+}
