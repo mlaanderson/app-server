@@ -148,6 +148,22 @@ When developing an application for `app-server`, add `app-server` as a
 development dependancy. Create a standalone mode that loads a configuration
 and calls the server. This makes it easier to debug your code.
 
+```javascript
+import Server from 'app-server;
+
+let config = {
+    port: 8080,
+    standalone: {
+        local_path: ".",
+        web_path: "/"
+    }
+};
+
+let server = new Server(config);
+server.listen().then(() => console.log('Listening on port 8080'));
+```
+```
+
 ## Alternate Startup - mounted as an app
 The `app-server` can also be mounted as an app on itself. This allows an
 app that serves sub-apps. This could be specifically helpful for installations
