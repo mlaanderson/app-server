@@ -3,3 +3,4 @@ apps
 *.pem
 *.csr
 .config.json
+.vscode
