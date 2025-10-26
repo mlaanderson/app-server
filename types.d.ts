@@ -38,6 +38,13 @@ declare namespace AppServer {
         web_path: string
     }
 
+    interface UserFolders {
+        /** The path which contains user home directories */
+        user_root: string,
+        /** The folder name in a home directory which will be served */
+        public_folder: string
+    }
+
 
     interface ServerConfig {
         /** The port to listen to HTTP requests on */
@@ -46,6 +53,10 @@ declare namespace AppServer {
         app_directory?: string,
         /** A folder to run an app in standalone mode from */
         standalone?: AppConfig,
+        /** Mounts folders without a defined app as static content */
+        allow_static?: boolean,
+        /** Option configuration to allow user mounts at /~username */
+        user_folders?: UserFolders,
         /** Optional configuration for HTTPS */
         ssl?: SSLConfig
     }

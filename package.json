@@ -1,10 +1,13 @@
 {
   "name": "app-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node service.js"
+  },
+  "bin": {
+    "app-server": "./service.js"
   },
   "keywords": [],
   "author": "",
