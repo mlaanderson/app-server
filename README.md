@@ -162,7 +162,6 @@ let config = {
 let server = new Server(config);
 server.listen().then(() => console.log('Listening on port 8080'));
 ```
-```
 
 ## Alternate Startup - mounted as an app
 The `app-server` can also be mounted as an app on itself. This allows an
