@@ -1,4 +1,5 @@
-/// <reference path="types.d.ts" />
+#!/usr/bin/env node
+/// <reference path="../types.d.ts" />
 /**
  * Copyright 2025 Michael Anderson
  * 
@@ -25,9 +26,9 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import Server from "./lib/server.js";
-import { Validate } from "./lib/configuration_validator.js";
-import { ConfigSearch, Env } from "./lib/config_search.js";
+import Server from "../lib/server.js";
+import { Validate } from "../lib/configuration_validator.js";
+import { ConfigSearch, Env } from "../lib/config_search.js";
 
 if (fileURLToPath(import.meta.url) === (await fs.realpath(process.argv[1]))) {
     const CONFIG_PATHS = [
