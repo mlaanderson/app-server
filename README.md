@@ -44,6 +44,8 @@ The structure of the configuration file is:
     },
     /** Mounts folders without a defined app as static content */
     allow_static?: boolean,
+    /** Allows directory listing in folders mounted as static content */
+    static_folder_list?: boolean,
     /** Option configuration to allow user mounts at /~username */
     user_folders?: {
         /** The path which contains user home directories */
