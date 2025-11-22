@@ -18,6 +18,10 @@
             "description": "Mounts apps without services as static content",
             "type": "boolean"
         },
+        "static_folder_list": {
+            "description": "Allows directory listing in folders mounted as static content",
+            "type": "boolean"
+        },
         "user_folders": {
             "description": "Search user's home directories for a folder to mount",
             "type": "object",
