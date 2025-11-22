@@ -145,7 +145,10 @@ which contain a `package.json` file. If one is found, the server imports
 the module indicated by the `main` property and attempts to load the 
 default export.
 
-If the default export is a function that returns an Express router, and optionally a shutdown handler, the server will mount the application at
+If a folder named `ROOT` is found it will be mounted at `/` on the server.
+
+If the default export is a function that returns an Express router, and 
+optionally a shutdown handler, the server will mount the application at
 the subdirectory name.
 
 If no `package.json` file is found and the `allow_static` is set, the
