@@ -55,6 +55,8 @@ declare namespace AppServer {
         standalone?: AppConfig,
         /** Mounts folders without a defined app as static content */
         allow_static?: boolean,
+        /** Allows directory listing in folders mounted as static content */
+        static_folder_list?: boolean,
         /** Option configuration to allow user mounts at /~username */
         user_folders?: UserFolders,
         /** Optional configuration for HTTPS */

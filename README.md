@@ -92,6 +92,12 @@ application directories which do not include a `package.json` file.
 
 **This can be a security risk, all of the files in the folder will be exposed.**
 
+### static_folder_list
+If set to true, the server will display a folder listing in static directories
+which do not have an `index.html` file.
+
+**This can be a security risk, all of the files in the folder will be exposed and listable.**
+
 ### user_folders
 Optional setting to allow a specific folder in all user's home directories 
 to be mounted. With the `allow_static` flag, this can let users serve simple
