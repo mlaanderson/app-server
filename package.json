@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node service.js"
+    "start": "node ./bin/service.js"
   },
   "bin": {
     "app-server": "./bin/service.js"

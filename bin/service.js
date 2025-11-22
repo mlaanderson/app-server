@@ -46,7 +46,7 @@ if (fileURLToPath(import.meta.url) === (await fs.realpath(process.argv[1]))) {
         './.config.json'
     ];
 
-    const package_json = JSON.parse(await fs.readFile(path.join(path.dirname(fileURLToPath(import.meta.url)), 'package.json')));
+    const package_json = JSON.parse(await fs.readFile(path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'package.json')));
     let { values } = parseArgs({
         allowPositionals: false,
         options: {
