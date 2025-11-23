@@ -53,6 +53,10 @@
             },
             "required": ["local_path", "web_path"]
         },
+        "web_sockets": {
+            "description": "Indicates that web sockets should be forwarded to apps",
+            "type": "boolean"
+        },
         "ssl": {
             "description": "Optional configuration for HTTPS",
             "type": "object",
