@@ -1,18 +1,23 @@
 {
-  "name": "app-server",
-  "version": "1.1.1",
-  "description": "",
-  "main": "index.js",
+  "name": "express-httpd",
+  "version": "1.1.2",
+  "description": "Express based application server",
+  "main": "bin/service.js",
   "scripts": {
     "start": "node ./bin/service.js"
   },
   "bin": {
     "app-server": "bin/service.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["HTTPS Server","Express","Application Server","App Server"],
+  "author": "Michael Anderson <michael@anderson-clan.org>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaanderson/app-server"
+  },
   "license": "MIT",
   "type": "module",
+  "homepage": "https://github.com/mlaanderson/app-server#ReadMe",
   "dependencies": {
     "express": "^5.1.0",
     "jsonschema": "^1.5.0",

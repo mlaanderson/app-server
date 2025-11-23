@@ -1,13 +1,52 @@
-# App-Server
+# Express-HTTP
 An [Express](https://expressjs.com/) based server which loads Express router
-apps and mounts them.
+apps and mounts them. It is similar in concept to Apache Tomcat, but for
+ExpressJS Router based apps.
 
 There are no shared sessions, variables, or authentications between apps. The
 apps are completely isolated from each other.
 
+The Express-HTTP server runs on Linux/UNIX, MacOS, and Windows. It should run
+on any platform supported by a modern version of NodeJS or Deno.
+
+## Features
+* Automatically finds, mounts, and serves ExpressJS Router applications
+* Can be configured to force upgrades from HTTP to HTTPS
+* Can be included as a development package during application development
+to enable application debug
+* Optional configuration allows static content to be served
+    * Additional flag allows directory listing similar to Apache HTTPD
+* Optional configuration to serve user directories, similar to `/~username`
+with Apache HTTPD
+
+# Install
+```
+$ npm install --global express-http
+```
+
+## Basic Usage
+1. Create a simple configuration file
+```json
+{
+    "port": 8080,
+    "app_directory": "/var/www/apps"
+}
+```
+2. Place apps (Express Router projects) in the `app_directory`, an app named
+`ROOT` will be mounted at the server's root.
+3. Start the server
+```
+$ express-http --config path_to_config.json
+```
+
+## Limitations
+* No service files are included, it is up to the user to create a
+Systemd script or Windows service
+* Due to the inner workings of ExpressJS, hot loading is not supported
+
 ## Usage
 ```shell
-app-server [-h] [-V] [-f configuration_file]
+express-httpd [-h] [-V] [-f configuration_file]
     -f, --config   Specify the configuration file, bypassing the search path
     -V, --version  Show the version info and exit
     -h, --help     Show this help text
@@ -15,16 +54,16 @@ app-server [-h] [-V] [-f configuration_file]
 
 When the server starts, it reads a JSON configuration file from one of the
 following paths, unless specified on the command line:
-* `${APP-SERVER-CONFIG-PATH}`
-* `/etc/APP-server/conf.json`
-* `${ProgramData}\APPServer\conf.json,`
-* `/usr/local/etc/APP-server/conf.json,`
-* `${HOME}/.local/etc/APP-server/conf.json`
-* `${HOME}/.config/APP-server/conf.json`
-* `${APPDATA}\APPServer\conf.json`
-* `${LOCALAPPDATA}\APPServer\conf.json`
-* `${USERPROFILE}\.local\APPServer\conf.json`
-* `${USERPROFILE}\.config\APPServer\conf.json`
+* `${EXPRESS-HTTPD-CONFIG-PATH}`
+* `/etc/express-httpd/conf.json`
+* `${ProgramData}\express-httpd\conf.json,`
+* `/usr/local/etc/express-httpd/conf.json,`
+* `${HOME}/.local/etc/express-httpd/conf.json`
+* `${HOME}/.config/express-httpd/conf.json`
+* `${APPDATA}\express-httpd\conf.json`
+* `${LOCALAPPDATA}\express-httpd\conf.json`
+* `${USERPROFILE}\.local\express-httpd\conf.json`
+* `${USERPROFILE}\.config\express-httpd\conf.json`
 * `./.conf.json`
 * `./.config.json`
 
@@ -79,7 +118,7 @@ mounted by the server. A directory named `ROOT` will be mounted on `/`.
 _Use app_directory or standalone_
 
 Points to a directory which will be the only application mounted. This
-is useful for debugging an app. Install `app-server` as a development
+is useful for debugging an app. Install `express-httpd` as a development
 dependency to you application.
 
 #### standalone.local_path
@@ -155,12 +194,12 @@ If no `package.json` file is found and the `allow_static` is set, the
 subdirectory is served in its entirety as static content.
 
 ## Alternate Startup - standalone mode
-When developing an application for `app-server`, add `app-server` as a
+When developing an application for `express-httpd`, add `express-httpd` as a
 development dependancy. Create a standalone mode that loads a configuration
 and calls the server. This makes it easier to debug your code.
 
 ```javascript
-import Server from 'app-server;
+import Server from 'express-httpd';
 
 let config = {
     port: 8080,
@@ -175,11 +214,11 @@ server.listen().then(() => console.log('Listening on port 8080'));
 ```
 
 ## Alternate Startup - mounted as an app
-The `app-server` can also be mounted as an app on itself. This allows an
+The `express-httpd` can also be mounted as an app on itself. This allows an
 app that serves sub-apps. This could be specifically helpful for installations
 that use the `user_folders` configuration.
 
-1. Create a project with `app-server` as a dependency. 
+1. Create a project with `express-httpd` as a dependency. 
 2. Create a configuration and load it
 3. Create an instance of Server using the configuration
 4. Call `server.scan_apps()` to load apps from the configuration

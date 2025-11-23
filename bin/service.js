@@ -32,16 +32,16 @@ import { ConfigSearch, Env } from "../lib/config_search.js";
 
 if (fileURLToPath(import.meta.url) === (await fs.realpath(process.argv[1]))) {
     const CONFIG_PATHS = [
-        Env`${'APP-SERVER-CONFIG-PATH'}`,
-        '/etc/APP-server/conf.json',
-        Env`${'ProgramData'}\\APPServer\\conf.json`,
-        '/usr/local/etc/APP-server/conf.json',
-        Env`${'HOME'}/.local/etc/APP-server/conf.json`,
-        Env`${'HOME'}/.config/APP-server/conf.json`,
-        Env`${'APPDATA'}\\APPServer\\conf.json`,
-        Env`${'LOCALAPPDATA'}\\APPServer\\conf.json`,
-        Env`${'USERPROFILE'}\\.local\\APPServer\\conf.json`,
-        Env`${'USERPROFILE'}\\.config\\APPServer\\conf.json`,
+        Env`${'EXPRESS-HTTPD-CONFIG-PATH'}`,
+        '/etc/express-httpd/conf.json',
+        Env`${'ProgramData'}\\express-httpd\\conf.json`,
+        '/usr/local/etc/express-httpd/conf.json',
+        Env`${'HOME'}/.local/etc/express-httpd/conf.json`,
+        Env`${'HOME'}/.config/express-httpd/conf.json`,
+        Env`${'APPDATA'}\\express-httpd\\conf.json`,
+        Env`${'LOCALAPPDATA'}\\express-httpd\\conf.json`,
+        Env`${'USERPROFILE'}\\.local\\express-httpd\\conf.json`,
+        Env`${'USERPROFILE'}\\.config\\express-httpd\\conf.json`,
         './.conf.json',
         './.config.json'
     ];
@@ -57,7 +57,7 @@ if (fileURLToPath(import.meta.url) === (await fs.realpath(process.argv[1]))) {
     });
 
     if (values.help) {
-        console.error('USAGE: app-server [-h] [-V] [-f configuration_file]');
+        console.error('USAGE: express-httpd [-h] [-V] [-f configuration_file]');
         console.error('    -f, --config   Specify the configuration file, bypassing the search path');
         console.error('    -V, --version  Show the version info and exit');
         console.error('    -h, --help     Show this help text');
