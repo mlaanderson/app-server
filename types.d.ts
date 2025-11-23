@@ -53,6 +53,8 @@ declare namespace AppServer {
         app_directory?: string,
         /** A folder to run an app in standalone mode from */
         standalone?: AppConfig,
+        /** Indicates that web sockets should be forwarded to apps */
+        web_sockets?: boolean,
         /** Mounts folders without a defined app as static content */
         allow_static?: boolean,
         /** Allows directory listing in folders mounted as static content */
@@ -70,7 +72,8 @@ declare namespace AppServer {
 
     interface AppRoute {
         router: express.Router,
-        shutdown: () => Promise<void>
+        shutdown: () => Promise<void>,
+        web_sockets: (socket: WebSocket, request: http.IncomingRequest) => void
     }
 
     function AppInitializer(web_path: string, local_path: string) : Promise<AppRoute>
