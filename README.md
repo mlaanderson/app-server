@@ -11,6 +11,7 @@ on any platform supported by a modern version of NodeJS or Deno.
 
 ## Features
 * Automatically finds, mounts, and serves ExpressJS Router applications
+* Can be configured to forward WebSocket connections to applications
 * Can be configured to force upgrades from HTTP to HTTPS
 * Can be included as a development package during application development
 to enable application debug
@@ -81,6 +82,8 @@ The structure of the configuration file is:
         /** The mount point for the app */
         web_path: string
     },
+    /** Indicates that web sockets should be forwarded to apps */
+    web_sockets?: boolean,
     /** Mounts folders without a defined app as static content */
     allow_static?: boolean,
     /** Allows directory listing in folders mounted as static content */
@@ -126,6 +129,9 @@ The path to the web app base directory.
 
 #### standalone.web_path
 The path to mount the web app on the web server.
+
+### web_sockets
+Indicates if web socket connections should be enabled for apps.
 
 ### allow_static
 If set to true, the server will failover to serving static content from
@@ -177,6 +183,28 @@ Indicates the location of the SSL secret key for the HTTPS server.
 
 #### ssl.certFile
 Indicates the location of the SSL certificate for the HTTPS server.
+
+## Minimal App
+A minimal app needs to export a function that takes the web mount path
+and local filesystem path as arguments and returns an object containing
+an Express Router. The returned object can also contain a shutdown handler,
+and a WebSocket handler.
+
+```javascript
+import express from 'express';
+
+export default function(web_path, local_path) {
+    let router = express.Router();
+    function shutdown() { ... }
+    function web_socket(socket, request) { ... }
+
+    router.get('/', (req, res) => res.json({"Hello": "World"}));
+
+    return {
+        router, shutdown, web_socket
+    }
+}
+```
 
 ## Startup - standard mode
 On startup the server scans the indicated directory for subdirectories
