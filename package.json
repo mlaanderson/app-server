@@ -1,6 +1,6 @@
 {
   "name": "express-httpd",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Express based application server",
   "main": "bin/service.js",
   "scripts": {
